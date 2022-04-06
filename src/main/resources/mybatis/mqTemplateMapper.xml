@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mqTemplate.dao.MqTemplateDao">
+    <select id="listMqTemplate" parameterType="com.mqTemplate.entity.query.TemplateQuery" resultType="MqTemplate">
+        select *from mqTemplate
+        <where>
+            <if test="templateName!=null and templateName!=''">
+                and `name` like concat('%',#{templateName},'%')
+            </if>
+            <if test="topic!=null and topic!=''">
+                and `topic` like concat('%',#{topic},'%')
+            </if>
+        </where>
+    </select>
+    <update id="updateTemplate" parameterType="com.mqTemplate.entity.MqTemplate" >
+        update mqTemplate set name=#{name},content=#{content},topic=#{topic} where id=#{id}
+    </update>
+    <insert id="createTemplate"   parameterType="MqTemplate" useGeneratedKeys="true" keyProperty="id">
+        insert into mqTemplate(name,content,topic) values (#{name},#{content},#{topic})
+    </insert>
+    <delete id="deleteTemplate" parameterType="Integer">
+        delete from mqTemplate where id=#{id}
+    </delete>
+
+</mapper>

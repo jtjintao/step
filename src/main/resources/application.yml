@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+
+#数据库连接源
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: PLUS
+    password: HHExdcZ7HHpaHiF4
+    url: jdbc:mysql://123.57.22.169:3306/plus?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #配置thymeleaf刷新页面自动更新
+
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type:  text/html
+
+mybatis:
+  type-aliases-package: com.mqTemplate.entity   #别名
+  mapper-locations: classpath:/mybatis/*.xml   #xml文件
+
+
+logging:
+  file:
+    name: log/log.log
+  level:
+    root: info
+    com.mqTemplate: debug
+
+
+devtools:
+  livereload:
+    enabled: true
+    port: 9527
+  restart:
+    enabled: true
+
+
